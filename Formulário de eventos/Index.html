@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crie e compartilhe seu evento</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #e5e5e5;
+      color: #322153;
+    }
+
+    /* Header escuro */
+    .header {
+      background-color: #121214;
+      color: #ffffff;
+      padding: 60px 20px 140px;
+      text-align: left;
+    }
+
+    .header-content {
+      max-width: 736px;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      line-height: 42px;
+      margin-bottom: 16px;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: #42D3FF;
+    }
+
+    /* Content Container / Card do Formulário */
+    .container {
+      max-width: 736px;
+      margin: -80px auto 60px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 64px;
+    }
+
+    /* Fieldsets e Títulos das Seções */
+    fieldset {
+      border: none;
+      margin-bottom: 48px;
+    }
+
+    legend {
+      font-size: 24px;
+      font-weight: bold;
+      color: #322153;
+      width: 100%;
+      border-bottom: 1px solid #e6e6f0;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* Inputs e Labels */
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+
+    .input-wrapper label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #4e4958;
+    }
+
+    .input-wrapper label span {
+      font-size: 12px;
+      color: #8c8a97;
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea,
+    .input-wrapper select {
+      background-color: #f8f8fc;
+      border: 1px solid #e6e6f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .input-wrapper input:focus,
+    .input-wrapper textarea:focus,
+    .input-wrapper select:focus {
+      border-color: #00e676;
+    }
+
+    /* Checkbox */
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .checkbox-wrapper label {
+      font-size: 14px;
+      color: #4e4958;
+    }
+
+    /* Grid para os horários/datas */
+    .time-inputs {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Rodapé e Botão */
+    .form-footer {
+      margin-top: 32px;
+    }
+
+    .form-footer button {
+      width: 100%;
+      height: 56px;
+      background-color: #00e676;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .form-footer button:hover {
+      background-color: #00c853;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-content">
+      <h1>Crie e compartilhe<br>seu evento.</h1>
+      <p>O primeiro passo, é preencher esse formulário de inscrição.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <form id="create-event">
+
+      <!-- Seção: Informações do Evento -->
+      <fieldset>
+        <legend>Informações do Evento</legend>
+
+        <div class="input-wrapper">
+          <label for="event-title">Título do evento <span>(mínimo 8 caracteres)</span></label>
+          <input type="text" id="event-title" required minlength="8">
+        </div>
+
+        <div class="input-wrapper">
+          <label for="event-link">Link do evento <span>(comece com https://)</span></label>
+          <input type="url" id="event-link" placeholder="https://" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="event-whatsapp">Whatsapp para contato <span>(somente números)</span></label>
+          <input type="tel" id="event-whatsapp" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="event-info">Informações extras</label>
+          <textarea id="event-info" rows="4"></textarea>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="event-category">Categoria</label>
+          <select id="event-category">
+            <option value="" disabled selected>Tipo do evento</option>
+            <option value="workshop">Workshop</option>
+            <option value="seminario">Seminário</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Privacidade -->
+      <fieldset>
+        <legend>Privacidade</legend>
+
+        <div class="input-wrapper">
+          <label for="admin-email">E-mail do administrador <span>(digite um email válido)</span></label>
+          <input type="email" id="admin-email" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="admin-password">Senha de acesso para os participantes <span>(mínimo 8 caracteres)</span></label>
+          <input type="password" id="admin-password" required minlength="8">
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="private-event">
+          <label for="private-event">Evento privado</label>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Dia e hora -->
+      <fieldset>
+        <legend>Dia e hora</legend>
+
+        <div class="time-inputs">
+          <div class="input-wrapper">
+            <label for="event-date">Data</label>
+            <input type="date" id="event-date" required>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="event-start">Das</label>
+            <input type="time" id="event-start" value="19:00">
+          </div>
+
+          <div class="input-wrapper">
+            <label for="event-end">Até</label>
+            <input type="time" id="event-end" value="20:00">
+          </div>
+        </div>
+      </fieldset>
+
+      <footer class="form-footer">
+        <button type="submit">Salvar evento</button>
+      </footer>
+
+    </form>
+  </main>
+
+</body>
+</html>
